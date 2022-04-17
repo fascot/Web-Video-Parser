@@ -32,7 +32,8 @@ Downloading code files and libraries Done! <br />
 
 # Usage
 
-IMPORTANT: `--help` does not work yet, use documentation. <br />
+By default youtube, pornhub and newgrounds are supported. <br />
+You can make your own parser for some sites and it can be featured and added to the base complectation of this tool. <br />
 
 You can type commands in no particular order <br />
 Except `--help` and `--info`, they have to stand as shown in the table and no commands after them will be used. <br />
@@ -40,7 +41,7 @@ Also, `--help` doesn't get url. <br />
 
 Then, don't type one command twice, only first will be used. <br />
 
-Base commands, wich work with any type of url: <br />
+Base commands, wich heve to work with any type of url: <br />
 ```bash
 | Tool           | Url | Command          | Argument                        | Description                                    |
 +----------------+-----+------------------+---------------------------------+------------------------------------------------+
@@ -70,6 +71,9 @@ BY DEFAULT:
  - name for output media from youtube and pornhub generates by video title <br />
  - path for output media is in the directory where the script installed <br />
  - index for media from unknown site is None, means that with no given index you'll get the exception <br />
+
+There is a bug in pytube 12.0, it returns `regex` error. <br />
+If pytube is already installed on your machine you can uninstall it (because fixed pytube ver is in the SupportedSites directory) or use this [solution](https://github.com/pytube/pytube/issues/1281).
 
 # Plans
 
