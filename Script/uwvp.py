@@ -16,7 +16,7 @@ def url_check(url):
     except ValueError:
         return f"Invalid url: respose gets {check.status_code} error"
 
-for site_file in os.scandir(f'{Path().absolute()}\SupportedSites'):
+for site_file in os.scandir(f'{Path().absolute()}\SupportedSites'.replace(os.sep)):
     if site_file.is_file():
         module_names.append(site_file.name[:-3])
         string = f"from SupportedSites.{site_file.name[:-3]} import *"
