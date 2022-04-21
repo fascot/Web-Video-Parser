@@ -117,15 +117,15 @@ def unknown_site_downloader(url, opts):
             name = custom_name
         
         if custom_path is None:
-            path = f'{Path().resolve().parent.absolute()}\downloads'
+            path = f'{Path(os.path.dirname(os.path.abspath(__file__))).parent.parent.absolute()}/downloads'.replace('/', os.sep)
         else:
             path = custom_path
 
         try:
-            os.mkdir(f'{Path().resolve().parent.absolute()}/downloads')
+            os.mkdir(path)
         except:
             pass
 
-        open(f'{path}\{name}.mp4', 'wb').write(media)
+        open(f'{path}/{name}.mp4'.replace('/', os.sep), 'wb').write(media)
     else:
         print("ERROR: No media links on this page")

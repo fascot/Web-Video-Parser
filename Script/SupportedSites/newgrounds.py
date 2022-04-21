@@ -103,12 +103,14 @@ def newgrounds_downloader(url, opts):
         custom_path = opts['path']
         custom_name = opts['name']
 
-        if resolution == 'best':
-            url = parsed_page[2][parsed_page[0][0]]
-        else:
-            url = parsed_page[2][resolution]
+        parsed_page = newgrounds_parser(url)
 
-        response = requests.get(url).content
+        if resolution == 'best':
+            link = parsed_page[2][parsed_page[0][0]]
+        else:
+            link = parsed_page[2][resolution]
+
+        response = requests.get(link).content
 
         if custom_name is None:
             name = parsed_page[3]
@@ -117,30 +119,28 @@ def newgrounds_downloader(url, opts):
             name = custom_name
 
         if custom_path is None:
-            path = f'{Path().resolve().parent.absolute()}\downloads'
+            path = f'{Path(os.path.dirname(os.path.abspath(__file__))).parent.parent.absolute()}/downloads'.replace('/', os.sep)
         else:
             path = custom_path.replace('/', os.sep)
 
-        parsed_page = newgrounds_parser(url)
-
         try:
-            os.mkdir(f'{Path().resolve().parent.absolute()}/downloads')
+            os.mkdir(path)
         except:
             pass
 
-        out_path = f'{path}\output.mp4'
+        out_path = f'{path}/output.mp4'.replace('/', os.sep)
         open(out_path,'wb').write(response)
 
         if video_only:
-            cmd = f"ffmpeg -i {path}\output.mp4 -c:v copy -an {path}\{name}.mp4"
+            cmd = f"ffmpeg -i {path}/output.mp4 -c:v copy -an {path}/{name}.mp4".replace('/', os.sep)
             os.system(cmd)
-            os.remove(f'{path}\output.mp4')
+            os.remove(f'{path}/output.mp4'.replace('/', os.sep))
         elif audio_only:
-            cmd = f"ffmpeg -i {path}\output.mp4 -a:v copy -vn {path}\{name}.mp4"
+            cmd = f"ffmpeg -i {path}/output.mp4 -a:v copy -vn {path}/{name}.mp4".replace('/', os.sep)
             os.system(cmd)
-            os.remove(f'{path}\output.mp4')
+            os.remove(f'{path}/output.mp4'.replace('/', os.sep))
         else:
-            os.rename(f'{path}\output.mp4', f"{path}\{name}.mp4")
+            os.rename(f'{path}/output.mp4', f"{path}/{name}.mp4".replace('/', os.sep))
 
         return "Downloading complete!"
     else:

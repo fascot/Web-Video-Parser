@@ -5,6 +5,7 @@ import requests
 
 module_names = []
 docs_by_module = {}
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
 def url_check(url):
     check = requests.head(url)
@@ -16,7 +17,7 @@ def url_check(url):
     except ValueError:
         return f"Invalid url: respose gets {check.status_code} error"
 
-for site_file in os.scandir(f'{Path().absolute()}/SupportedSites'.replace('/', os.sep)):
+for site_file in os.scandir(f'{script_dir}/SupportedSites'.replace('/', os.sep)):
     if site_file.is_file():
         module_names.append(site_file.name[:-3])
         string = f"from SupportedSites.{site_file.name[:-3]} import *"
@@ -25,7 +26,11 @@ for site_file in os.scandir(f'{Path().absolute()}/SupportedSites'.replace('/', o
 opt_able_sites = []
 res_able_sites = []
 idx_able_sites = []
-url = sys.argv[1]
+try:
+    url = sys.argv[1]
+except:
+    print("ERROR: No url got")
+    sys.exit()
 url_type = None
 for module in module_names:
     if url_type is not None:

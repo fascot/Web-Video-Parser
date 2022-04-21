@@ -89,7 +89,7 @@ def pornhub_downloader(url, opts):
         custom_path = opts['path']
         custom_name = opts['name']
         if custom_path is None:
-            output_path = f"{Path().resolve().parent.absolute()}/downloads".replace('/', os.sep)
+            output_path = f"{Path(os.path.dirname(os.path.abspath(__file__))).parent.parent.absolute()}/downloads".replace('/', os.sep)
         else:
             output_path = custom_path
 
@@ -110,7 +110,7 @@ def pornhub_downloader(url, opts):
 
             try:
                 download_options = {'format': format,
-                        'outtmpl': f'{output_path}\output.mp4',
+                        'outtmpl': f'{output_path}/output.mp4'.replace('/', os.sep),
                         'ignoreerrors': True,
                         'nowarnings': True,
                         'nooverwrites': True}
@@ -126,13 +126,13 @@ def pornhub_downloader(url, opts):
         print("ERROR: Wrong pornhub link: maybe this link is not a video link, but channel or playlist and etc.")
     
     if video_only:
-        cmd = f"ffmpeg -i {output_path}output.mp4 -c:v copy -an {output_path}\{title}.mp4"
+        cmd = f"ffmpeg -i {output_path}/output.mp4 -c:v copy -an {output_path}/{title}.mp4".replace('/', os.sep)
         os.system(cmd)
         return "Video download complete!"
     elif audio_only:
-        cmd = f"ffmpeg -i {output_path}output.mp4 -c:a copy -vn {output_path}\{title}.mp4"
+        cmd = f"ffmpeg -i {output_path}/output.mp4 -c:a copy -vn {output_path}/{title}.mp4".replace('/', os.sep)
         os.system(cmd)
         return "Audio download complete!"
     else:
-        os.rename(f"{output_path}output.mp4", f"{output_path}\{title}.mp4")
+        os.rename(f"{output_path}/output.mp4", f"{output_path}/{title}.mp4".replace('/', os.sep))
         return "Video and audio download complete!"

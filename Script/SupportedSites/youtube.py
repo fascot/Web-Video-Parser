@@ -138,7 +138,7 @@ def youtube_downloader(url, opts):
         res_tag = res_tags[resolution]
         yt_streams = YouTube(url).streams
 
-        prjct_dir = Path().resolve().parent.absolute()
+        prjct_dir = Path(os.path.dirname(os.path.abspath(__file__))).parent.parent.absolute()
 
         try:
             os.mkdir(f'{prjct_dir}/downloads'.replace('/', os.sep))
@@ -159,7 +159,7 @@ def youtube_downloader(url, opts):
             name = f'{custom_name}.mp4'
         
         if custom_path is None:
-            path = f'{prjct_dir}\downloads'
+            path = f'{prjct_dir}/downloads'.replace('/', os.sep)
         else:
             path = custom_path.replace('/', os.sep)
     
@@ -172,19 +172,19 @@ def youtube_downloader(url, opts):
                 print("ERROR: This video has no audio, it means you get nothing...")
                 sys.exit()
 
-            os.rename(video_path, f'{path}\{name}')
+            os.rename(video_path, f'{path}/{name}'.replace('/', os.sep))
             shutil.rmtree(buffer_path)
             return "Video download complete!"
 
         else:
             yt_streams.get_by_itag(audio_tag).download(output_path = buffer_path, filename='audio.webm')
             if audio_only:
-                os.rename(audio_path, f'{path}\{name}')
+                os.rename(audio_path, f'{path}/{name}'.replace('/', os.sep))
                 shutil.rmtree(buffer_path)
                 return "Audio download complete!"
             
             else:
-                cmd = f"ffmpeg -i {audio_path} -i {video_path} -c:v copy {path}\{name}"
+                cmd = f"ffmpeg -i {audio_path} -i {video_path} -c:v copy {path}/{name}".replace('/', os.sep)
                 os.system(cmd)
                 shutil.rmtree(buffer_path)
                 return "Video and audio download complete!"
