@@ -74,7 +74,7 @@ BY DEFAULT:
  - index for media from unknown site is None, means that with no given index you'll get the exception
 
 There is a bug in pytube 12.0, it returns `regex` error. <br />
-If pytube is already installed on your machine you can uninstall it (because fixed pytube version is already installed in the SupportedSites directory) or use this [solution](https://github.com/pytube/pytube/issues/1281).
+If pytube is installed on your machine you can uninstall it (because fixed pytube version is already in the SupportedSites directory) or use this [solution](https://github.com/pytube/pytube/issues/1281).
 
 # Plans
 
