@@ -27,7 +27,7 @@ If you are on Linux, just use Pacman or Apt:
 
 `ffmpeg` is using for output media processing.
 
-Download firefox and [firefox driver](https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/) for selenium
+Also you have to install firefox and [firefox driver](https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/) for selenium
 
 Downloading code files and libraries Done! <br />
 
