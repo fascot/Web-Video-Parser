@@ -54,33 +54,33 @@ Base commands, wich heve to work with any type of url: <br />
 
 Commands `-o` and `-r` work only with youtube and pornhub links:
 ```bash
-| python uwvp.py | url | -o | -option     | video_only | audio_only         | Deletes audio or video from output media file  |
-| python uwvp.py | url | -r | -resolution | 144 | 240 | .... | 2160         | Changes resolution of the output media file    |
+| python uwvp.py | url | -o | -option     | video_only | audio_only   | Deletes audio or video from output media file  |
+| python uwvp.py | url | -r | -resolution | 144 | 240 | .... | 2160   | Changes resolution of the output media file    |
 ```
 
 And command `-i` works only with unsupported sites, which has no API, and algorithm gets all video links from site and returns
 indexes for media with `--info` command:
 ```bash
-| python uwvp.py | url | -i | -index      | index                           | Choosing the media file link from site by index |
+| python uwvp.py | url | -i | -index      | index       | Choosing the media file link from site by index |
 ```
 
 BY DEFAULT:
 
- - video from youtube and pornhub downloads in the highest quality <br />
- - video from youtube and pornhub downloads with video and audio <br />
- - name for output media from unknown sites generates randomly <br />
- - name for output media from youtube and pornhub generates by video title <br />
- - path for output media is in the directory where the script installed <br />
- - index for media from unknown site is None, means that with no given index you'll get the exception <br />
+ - video from youtube and pornhub downloads in the highest quality
+ - video from youtube and pornhub downloads with video and audio
+ - name for output media from unknown sites generates randomly
+ - name for output media from youtube and pornhub generates by video title
+ - path for output media is in the directory where the script installed
+ - index for media from unknown site is None, means that with no given index you'll get the exception
 
 There is a bug in pytube 12.0, it returns `regex` error. <br />
-If pytube is already installed on your machine you can uninstall it (because fixed pytube ver is in the SupportedSites directory) or use this [solution](https://github.com/pytube/pytube/issues/1281).
+If pytube is already installed on your machine you can uninstall it (because fixed pytube version is already installed in the SupportedSites directory) or use this [solution](https://github.com/pytube/pytube/issues/1281).
 
 # Plans
 
-- Bug fixes and adding features for already supported sites <br />
-- Trying to use Selenium to get media files by doing activity on site <br />
-- Also making configs for sites which have no media links on page by default (Selenium automatization) <br />
+- Bug fixes and adding features for already supported sites
+- Trying to use Selenium to get media files by doing activity on site
+- Also making configs for sites which have no media links on page by default (Selenium automatization)
 - Make builds for each os, to not using `python uwvp.py` every time
 - GUI for average users
 
@@ -91,4 +91,6 @@ BeautifulSoup4 <br />
 Youtube-dl <br />
 Pornhub-api <br />
 Requests <br />
+Selenium <br />
+and Python of course <br />
 ...
