@@ -129,6 +129,7 @@ def newgrounds_downloader(url, opts):
             pass
 
         out_path = f'{path}/output.mp4'.replace('/', os.sep)
+        print('downloading file...')
         open(out_path,'wb').write(response)
 
         if video_only:
@@ -142,6 +143,6 @@ def newgrounds_downloader(url, opts):
         else:
             os.rename(f'{path}/output.mp4', f"{path}/{name}.mp4".replace('/', os.sep))
 
-        return "Downloading complete!"
+        return "\n      Downloading complete!"
     else:
         print("ERROR: It's not a video link, maybe something else...")

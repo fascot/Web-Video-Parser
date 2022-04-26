@@ -164,6 +164,7 @@ def youtube_downloader(url, opts):
             path = custom_path.replace('/', os.sep)
     
         if not audio_only:
+            print('downloading video...')
             yt_streams.get_by_itag(res_tag).download(output_path = buffer_path, filename='video.mp4')
 
         if audio_tag is None or video_only:
@@ -174,20 +175,21 @@ def youtube_downloader(url, opts):
 
             os.rename(video_path, f'{path}/{name}'.replace('/', os.sep))
             shutil.rmtree(buffer_path)
-            return "Video download complete!"
+            return "\n      Video download complete!"
 
         else:
+            print('downloading audio...')
             yt_streams.get_by_itag(audio_tag).download(output_path = buffer_path, filename='audio.webm')
             if audio_only:
                 os.rename(audio_path, f'{path}/{name}'.replace('/', os.sep))
                 shutil.rmtree(buffer_path)
-                return "Audio download complete!"
+                return "\n      Audio download complete!"
             
             else:
                 cmd = f"ffmpeg -i {audio_path} -i {video_path} -c:v copy {path}/{name}".replace('/', os.sep)
                 os.system(cmd)
                 shutil.rmtree(buffer_path)
-                return "Video and audio download complete!"
+                return "\n      Video and audio download complete!"
 
     else:
         print("ERROR: Not a video link: maybe it's a channel or playlist")

@@ -126,6 +126,8 @@ def unknown_site_downloader(url, opts):
         except:
             pass
 
+        print('downloading file...')
         open(f'{path}/{name}.mp4'.replace('/', os.sep), 'wb').write(media)
+        print('\n       Downloading file complete!')
     else:
         print("ERROR: No media links on this page")

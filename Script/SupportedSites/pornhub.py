@@ -128,11 +128,11 @@ def pornhub_downloader(url, opts):
     if video_only:
         cmd = f"ffmpeg -i {output_path}/output.mp4 -c:v copy -an {output_path}/{title}.mp4".replace('/', os.sep)
         os.system(cmd)
-        return "Video download complete!"
+        return "\n      Video download complete!"
     elif audio_only:
         cmd = f"ffmpeg -i {output_path}/output.mp4 -c:a copy -vn {output_path}/{title}.mp4".replace('/', os.sep)
         os.system(cmd)
-        return "Audio download complete!"
+        return "\n      Audio download complete!"
     else:
         os.rename(f"{output_path}/output.mp4", f"{output_path}/{title}.mp4".replace('/', os.sep))
-        return "Video and audio download complete!"
+        return "\n      Video and audio download complete!"
